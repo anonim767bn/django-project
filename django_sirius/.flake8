@@ -1,0 +1,8 @@
+[flake8]
+exclude =
+    *migrations*,
+    *pycache*,
+    *venv*,
+    *git*,
+    *settings*,
+ignore = F401
