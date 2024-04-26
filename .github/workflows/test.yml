@@ -14,4 +14,4 @@ jobs:
       run: |
         sudo apt install flake8
     - name: Flake8
-      run: cd django_project && flake8
+      run: ls && cd django_project && flake8
