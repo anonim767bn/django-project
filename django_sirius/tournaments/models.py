@@ -53,7 +53,12 @@ class Tournament(UUIDmixin):
         ordering = ['start']
         verbose_name = _('tournament')
         verbose_name_plural = _('tournaments')
-
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(start__lte=models.F('end')),
+                name='start_lte_end'
+            )
+        ]
 
 class TournamentTeam(models.Model):
     tournament = models.ForeignKey(Tournament, verbose_name=_(
@@ -72,18 +77,18 @@ class TournamentTeam(models.Model):
 
 
 class Match(UUIDmixin):
-    tournament = models.ForeignKey(
+    tournament_id = models.ForeignKey(
         Tournament,
         verbose_name=_('tournament id'),
         on_delete=models.CASCADE,
     )
-    team_1 = models.ForeignKey(
+    team1_id = models.ForeignKey(
         Team,
         verbose_name=_('team 1'),
         on_delete=models.CASCADE,
         related_name='mathces_as_team_1',
     )
-    team_2 = models.ForeignKey(
+    team2_id = models.ForeignKey(
         Team,
         verbose_name=_('team 2'),
         on_delete=models.CASCADE,
@@ -96,9 +101,12 @@ class Match(UUIDmixin):
 
     class Meta:
         db_table = '"tournament"."match"'
-        ordering = ['tournament']
+        ordering = ['match_date_time']
         verbose_name = _('match')
         verbose_name_plural = _('matches')
         unique_together = (
-            ('tournament', 'team_1', 'team_2')
+            ('tournament_id', 'team1_id', 'team2_id', 'match_date_time')
         )
+        constraints = [
+            models.CheckConstraint(check=models.Q(team1_id__ne=models.F('team2_id')), name='team1_ne_team2')
+        ]
