@@ -60,6 +60,7 @@ class Tournament(UUIDmixin):
             )
         ]
 
+
 class TournamentTeam(models.Model):
     tournament = models.ForeignKey(Tournament, verbose_name=_(
         'tournament id'), on_delete=models.CASCADE)
@@ -108,5 +109,6 @@ class Match(UUIDmixin):
             ('tournament_id', 'team1_id', 'team2_id', 'match_date_time')
         )
         constraints = [
-            models.CheckConstraint(check=models.Q(team1_id__ne=models.F('team2_id')), name='team1_ne_team2')
+            models.CheckConstraint(check=~models.Q(
+                team1_id=models.F('team2_id')), name='team1_ne_team2')
         ]
