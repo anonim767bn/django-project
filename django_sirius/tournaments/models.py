@@ -3,6 +3,7 @@ from uuid import uuid4
 from datetime import date
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 
 def check_founding(dt: date) -> None:
@@ -20,24 +21,32 @@ class UUIDmixin(models.Model):
         abstract = True
 
 
-class Team(UUIDmixin):
-    title = models.TextField(_('title'), null=True, blank=True)
+class OwnerMixin(models.Model):
+    owner = models.ForeignKey(User, verbose_name=_(
+        'user'), on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
+
+
+class Team(UUIDmixin, OwnerMixin):
+    title = models.TextField(_('title'), null=False, blank=False)
     founding = models.DateField(
         _('founding'), null=True, blank=True, validators=[check_founding])
     tournaments = models.ManyToManyField(
         'Tournament', verbose_name=_('tournaments'), through='TournamentTeam')
 
     class Meta:
-        db_table = '"tournament"."team"'
+        db_table = 'team'
         ordering = ['founding']
         verbose_name = _('team')
         verbose_name_plural = _('teams')
 
     def __str__(self) -> str:
-        return self.title
+        return f'command {self.title} founded {self.founding}'
 
 
-class Tournament(UUIDmixin):
+class Tournament(UUIDmixin, OwnerMixin):
     title = models.TextField(_('title'), null=True, blank=True)
     description = models.TextField(_('description'), null=True, blank=True)
     start = models.DateField(_('start'), null=True, blank=True)
@@ -46,10 +55,10 @@ class Tournament(UUIDmixin):
         'Team', verbose_name=_('teams'), through='TournamentTeam')
 
     def __str__(self):
-        return self.title
+        return f' tournament {self.title} from {self.start} to {self.end}'
 
     class Meta:
-        db_table = '"tournament"."tournament"'
+        db_table = 'tournament'
         ordering = ['start']
         verbose_name = _('tournament')
         verbose_name_plural = _('tournaments')
@@ -61,14 +70,14 @@ class Tournament(UUIDmixin):
         ]
 
 
-class TournamentTeam(models.Model):
+class TournamentTeam(UUIDmixin, OwnerMixin):
     tournament = models.ForeignKey(Tournament, verbose_name=_(
         'tournament id'), on_delete=models.CASCADE)
     team = models.ForeignKey(Team, verbose_name=_(
         'team id'), on_delete=models.CASCADE)
 
     class Meta:
-        db_table = '"tournament"."tournament_team"'
+        db_table = 'tournament_team'
         ordering = ['tournament']
         verbose_name = _('relationship tournament team')
         verbose_name_plural = _('relationships tournament teams')
@@ -77,7 +86,21 @@ class TournamentTeam(models.Model):
         )
 
 
-class Match(UUIDmixin):
+class Place(UUIDmixin, OwnerMixin):
+    title = models.TextField(_('title'), null=True, blank=True)
+    address = models.TextField(_('address'), null=True, blank=True)
+
+    class Meta:
+        db_table = 'place'
+        ordering = ['title']
+        verbose_name = _('place')
+        verbose_name_plural = _('places')
+
+    def __str__(self):
+        return f'place {self.title} address {self.address}'
+
+
+class Match(UUIDmixin, OwnerMixin):
     tournament_id = models.ForeignKey(
         Tournament,
         verbose_name=_('tournament id'),
@@ -96,17 +119,21 @@ class Match(UUIDmixin):
         related_name='mathces_as_team_2',
     )
 
-    place = models.TextField('place', null=True, blank=True)
+    place_id = models.ForeignKey(
+        Place,
+        verbose_name=_('place'),
+        on_delete=models.CASCADE,
+    )
     match_date_time = models.DateTimeField(
         _('match date and time'), null=True, blank=True)
 
     class Meta:
-        db_table = '"tournament"."match"'
+        db_table = 'match'
         ordering = ['match_date_time']
         verbose_name = _('match')
         verbose_name_plural = _('matches')
         unique_together = (
-            ('tournament_id', 'team1_id', 'team2_id', 'match_date_time')
+            ('tournament_id', 'team1_id', 'team2_id', 'match_date_time', 'place_id')
         )
         constraints = [
             models.CheckConstraint(check=~models.Q(

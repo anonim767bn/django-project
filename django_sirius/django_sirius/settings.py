@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from os import getenv
 from dotenv import load_dotenv
-
+import os
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,7 +35,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'tournaments',
+    'django_extensions',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'tournaments.apps.TournamentsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,15 +81,22 @@ WSGI_APPLICATION = 'django_sirius.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': getenv('PG_DBNAME'),
+#         'USER': getenv('PG_USER'),
+#         'PASSWORD': getenv('PG_PASSWORD'),
+#         'HOST': getenv('PG_HOST'),
+#         'PORT': getenv('PG_PORT'),
+#         'OPTIONS': {'options': '-c search_path=public,library'}
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': getenv('PG_DBNAME'),
-        'USER': getenv('PG_USER'),
-        'PASSWORD': getenv('PG_PASSWORD'),
-        'HOST': getenv('PG_HOST'),
-        'PORT': getenv('PG_PORT'),
-        'OPTIONS': {'options': '-c search_path=public,library'}
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -131,3 +141,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}
