@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Главная страница</title>
+</head>
+
+<body>
+    <h1>
+        Приветствую на главной странице сайта
+    </h1>
+    <p>
+        {% for key, value in pages.items %}
+            <a href="{% url value %}">{{ key }}</a><br>
+        {% endfor %}
+    </p>
+</body>

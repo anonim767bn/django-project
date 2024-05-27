@@ -2,30 +2,16 @@ from rest_framework import serializers
 from .models import Tournament, Match, Team, Place
 
 
-class TournamentSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+def get_serializer(model_):
+    class Serializer(serializers.ModelSerializer):
+        owner = serializers.ReadOnlyField(source='owner.username')
 
-    class Meta:
-        model = Tournament
-        fields = '__all__'
+        class Meta:
+            model = model_
+            fields = '__all__'
+    return Serializer
 
-class MatchSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-
-    class Meta:
-        model = Match
-        fields = '__all__'
-
-class TeamSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-
-    class Meta:
-        model = Team
-        fields = '__all__'
-
-class PlaceSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-    
-    class Meta:
-        model = Place
-        fields = '__all__'
+TournamentSerializer = get_serializer(Tournament)
+MatchSerializer = get_serializer(Match)
+TeamSerializer = get_serializer(Team)
+PlaceSerializer = get_serializer(Place)

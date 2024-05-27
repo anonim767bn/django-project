@@ -1,0 +1,24 @@
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+</head>
+<body>
+    <a href="{% url 'main_page' %}"> Главная страница</a><br>
+    <a href="{% url link.1 %}">{{ link.0 }}</a> <br>
+    <hr>
+    <h1>{{title}}</h1>
+            {% for field_name, field in fields.items %}
+                {{ field_name }}: {{ object|get_attribute:field }}<br>
+            {% endfor %}
+            {% for foreign_name, foreign in foreigns.items %}
+                {% with obj=object|get_attribute:foreign.0 model_name=foreign.1 id=obj.id %}
+                    {% with id=obj.id %}
+                        {{foreign_name}}: <a href="{% url model_name id %}">{{obj}}</a><br>
+                    {% endwith %}
+                {% endwith %}
+            {% endfor %}
+    </ul>
+</body>

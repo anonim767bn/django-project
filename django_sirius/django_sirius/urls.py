@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from tournaments.views import TournamentViewSet, MatchViewSet, TeamViewSet, PlaceViewSet, UserRegistrationViewSet
+from tournaments.views import *
 from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
@@ -26,10 +26,21 @@ router.register(r'matches', MatchViewSet)
 router.register(r'teams', TeamViewSet)
 router.register(r'places', PlaceViewSet)
 
+handler404 = 'tournaments.views.page_not_found'
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
+    path('admin/', admin.site.urls, name='admin'),
+    path('api/v1/', include(router.urls), name='api'),
     path('api-token-auth/',  obtain_auth_token, name='api_token_auth'),
-    path('register/', UserRegistrationViewSet.as_view(), name='user_registration'),
+    path('register/', UserRegistrationViewSet.as_view(), name='register'),
+    path('', main_page, name='main_page'),
+    path('tournament/<str:entity_id>/', tournament, name='tournament'),
+    path('tournaments/', tournaments, name='tournaments'),
+    path('teams/', teams, name = 'teams'),
+    path('team/<str:entity_id>', team, name = 'team'),
+    path('places/', places, name='places'),
+    path('place/<str:entity_id>', place, name='place'),
+    path('matches/', matches, name='matches'),
+    path('match/<str:entity_id>', match, name='match'),
 ]
