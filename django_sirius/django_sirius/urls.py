@@ -31,7 +31,7 @@ handler404 = 'tournaments.views.page_not_found'
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('api/v1/', include(router.urls), name='api'),
+    path('api/v1/', include((router.urls, 'tournaments_app'), namespace='api')),
     path('api-token-auth/',  obtain_auth_token, name='api_token_auth'),
     path('register/', UserRegistrationViewSet.as_view(), name='register'),
     path('', main_page, name='main_page'),

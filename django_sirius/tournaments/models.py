@@ -32,7 +32,7 @@ class OwnerMixin(models.Model):
 class Team(UUIDmixin, OwnerMixin):
     title = models.TextField(_('title'), null=False, blank=False)
     founding = models.DateField(
-        _('founding'), null=True, blank=True, validators=[check_founding])
+        _('founding'), null=False, blank=False, validators=[check_founding])
     tournaments = models.ManyToManyField(
         'Tournament', verbose_name=_('tournaments'), through='TournamentTeam')
 
@@ -47,10 +47,10 @@ class Team(UUIDmixin, OwnerMixin):
 
 
 class Tournament(UUIDmixin, OwnerMixin):
-    title = models.TextField(_('title'), null=True, blank=True)
+    title = models.TextField(_('title'), null=False, blank=False)
     description = models.TextField(_('description'), null=True, blank=True)
-    start = models.DateField(_('start'), null=True, blank=True)
-    end = models.DateField(_('end'), null=True, blank=True)
+    start = models.DateField(_('start'), null=False, blank=False)
+    end = models.DateField(_('end'), null=False, blank=False)
     teams = models.ManyToManyField(
         'Team', verbose_name=_('teams'), through='TournamentTeam')
 
@@ -87,8 +87,8 @@ class TournamentTeam(UUIDmixin, OwnerMixin):
 
 
 class Place(UUIDmixin, OwnerMixin):
-    title = models.TextField(_('title'), null=True, blank=True)
-    address = models.TextField(_('address'), null=True, blank=True)
+    title = models.TextField(_('title'), null=False, blank=False)
+    address = models.TextField(_('address'), null=False, blank=False)
 
     class Meta:
         db_table = 'place'
@@ -125,7 +125,7 @@ class Match(UUIDmixin, OwnerMixin):
         on_delete=models.CASCADE,
     )
     match_date_time = models.DateTimeField(
-        _('match date and time'), null=True, blank=True)
+        _('match date and time'), null=False, blank=False)
 
     class Meta:
         db_table = 'match'
