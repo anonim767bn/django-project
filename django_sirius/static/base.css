@@ -1,0 +1,16 @@
+/* base.css */
+#user-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 20px;
+    background-color: #2b6299;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#user-info p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #fff; /* цвет текста изменен на белый */
+}

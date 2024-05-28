@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Registration</title>
+{% extends 'base.html' %}
+{% load static %}
+{% block css_addition %}
+    <link rel="stylesheet" href="{% static 'tournaments/css/register.css' %}">
     <script>
         function submitForm(event) {
             event.preventDefault();
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
+            var password2 = document.getElementById('password2').value;
+            if (password != password2) {
+                alert('Passwords do not match!');
+                return;
+            }
             fetch('', {
                 method: 'POST',
                 headers: {
@@ -20,6 +25,7 @@
                     alert(data.error);
                 } else if (data.token) {
                     alert('Registration successful! Your token is: ' + data.token);
+                    window.location.href = '/';
                 }
             })
             .catch((error) => {
@@ -27,15 +33,18 @@
             });
         }
     </script>
-</head>
-<body>
-    <h2>Registration Form</h2>
-    <form onsubmit="submitForm(event)">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br>
-        <input type="submit" value="Register">
-    </form>
-</body>
-</html>
+{% endblock %}
+{% block content %}
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form onsubmit="submitForm(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <label for="password2">Confirm your password</label>
+            <input type="password" id="password2" name="password2" required>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+{% endblock %}

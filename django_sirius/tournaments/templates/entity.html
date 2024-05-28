@@ -1,24 +1,30 @@
-{% load custom_filters %}
+{% extends 'base.html' %}
+{% load static %}
+{% block css_addition %}
+<link rel="stylesheet" href="{% static 'tournaments/css/entity.css' %}">
+</style>
 
-<!DOCTYPE html>
-<head>
-    <meta charset="utf-8">
-    <title>{{title}}</title>
-</head>
-<body>
-    <a href="{% url 'main_page' %}"> Главная страница</a><br>
-    <a href="{% url link.1 %}">{{ link.0 }}</a> <br>
-    <hr>
-    <h1>{{title}}</h1>
+{% endblock %}
+
+{% block content %}   
+{% load custom_filters %}
+    <div class="container">
+        <a href="{% url 'main_page' %}" class="nav-link">Главная страница</a>
+        <a href="{% url link.1 %}" class="nav-link">{{ link.0 }}</a>
+
+        <hr>
+        <h1>{{title}}</h1>
+        <ul class="property-list">
             {% for field_name, field in fields.items %}
-                {{ field_name }}: {{ object|get_attribute:field }}<br>
+                <li><strong>{{ field_name }}:</strong> {{ object|get_attribute:field }}</li>
             {% endfor %}
             {% for foreign_name, foreign in foreigns.items %}
                 {% with obj=object|get_attribute:foreign.0 model_name=foreign.1 id=obj.id %}
                     {% with id=obj.id %}
-                        {{foreign_name}}: <a href="{% url model_name id %}">{{obj}}</a><br>
+                        <li><strong>{{foreign_name}}:</strong> <a href="{% url model_name id %}" class="property-link">{{obj}}</a></li>
                     {% endwith %}
                 {% endwith %}
             {% endfor %}
-    </ul>
-</body>
+        </ul>
+    </div>
+{% endblock %}

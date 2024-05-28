@@ -1,0 +1,64 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    padding: 20px;
+    font-size: 2em;
+}
+
+.nav-link {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007BFF;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #00C6FF;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    margin: 20px 0;
+}
+
+.property-list {
+    list-style: none;
+    padding: 0;
+}
+
+.property-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.property-list li:last-child {
+    border-bottom: none;
+}
+
+.property-link {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.property-link:hover {
+    color: #00C6FF;
+}

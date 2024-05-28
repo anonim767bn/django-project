@@ -1,3 +1,5 @@
 [run]
-include =
-    */django_sirius/*
+omit =
+    */asgi.py
+    */wsgi.py
+    */manage.py

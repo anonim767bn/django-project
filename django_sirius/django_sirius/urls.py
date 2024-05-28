@@ -43,4 +43,6 @@ urlpatterns = [
     path('place/<str:entity_id>', place, name='place'),
     path('matches/', matches, name='matches'),
     path('match/<str:entity_id>', match, name='match'),
+    path('login/', UserLoginViewSet.as_view(), name='login'),
+    path('logout/', logout_page, name='logout'),
 ]
