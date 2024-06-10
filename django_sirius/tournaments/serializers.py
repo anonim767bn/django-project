@@ -15,7 +15,11 @@ def get_serializer(model_: Type[Model]) -> Type[serializers.ModelSerializer]:
     return Serializer
 
 
-TournamentSerializer: Type[serializers.ModelSerializer] = get_serializer(Tournament)
-MatchSerializer: Type[serializers.ModelSerializer] = get_serializer(Match)
-TeamSerializer: Type[serializers.ModelSerializer] = get_serializer(Team)
-PlaceSerializer: Type[serializers.ModelSerializer] = get_serializer(Place)
+TournamentSerializer: Type[serializers.ModelSerializer] = \
+    get_serializer(Tournament)
+MatchSerializer: Type[serializers.ModelSerializer] = \
+    get_serializer(Match)
+TeamSerializer: Type[serializers.ModelSerializer] = \
+    get_serializer(Team)
+PlaceSerializer: Type[serializers.ModelSerializer] = \
+    get_serializer(Place)

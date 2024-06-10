@@ -1,4 +1,4 @@
-from .models import *
+from .models import Tournament, Match, Team, Place
 
 PAGES = {
     'Tournament': {

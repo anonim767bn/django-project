@@ -133,7 +133,13 @@ class Match(UUIDmixin, OwnerMixin):
         verbose_name = _('match')
         verbose_name_plural = _('matches')
         unique_together = (
-            ('tournament_id', 'team1_id', 'team2_id', 'match_date_time', 'place_id')
+            (
+                'tournament_id',
+                'team1_id',
+                'team2_id',
+                'match_date_time',
+                'place_id'
+            )
         )
         constraints = [
             models.CheckConstraint(check=~models.Q(
