@@ -1,20 +1,21 @@
 <!DOCTYPE html>
+<html>
 <head>
     {% load static %}
     <meta charset="utf-8">
     <title>{{title}}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"> -->
+
 
     {% block css_addition %}{% endblock %}
 </head>
 <body>
-
         {% if user.is_authenticated %}
         <div id="user-info">
             <p>Welcome, {{ user.username }}!</p>
             <a href="{% url 'logout' %}">Выйти</a>
         </div>
-
         {% endif %}
     {% block content %}{% endblock %}
 </body>
+</html>

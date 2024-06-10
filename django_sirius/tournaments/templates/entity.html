@@ -1,28 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block css_addition %}
-<link rel="stylesheet" href="{% static 'tournaments/css/entity.css' %}">
-</style>
+{% load custom_filters %}
 
+{% block css_addition %}
+    <link rel="stylesheet" href="{% static 'tournaments/css/entity.css' %}">
 {% endblock %}
 
-{% block content %}   
-{% load custom_filters %}
+{% block content %}
     <div class="container">
-        <a href="{% url 'main_page' %}" class="nav-link">Главная страница</a>
-        <a href="{% url link.1 %}" class="nav-link">{{ link.0 }}</a>
+        <nav>
+            <a href="{% url 'main_page' %}" class="nav-link">Главная страница</a>
+            <a href="{% url link.1 %}" class="nav-link">{{ link.0 }}</a>
+        </nav>
 
         <hr>
-        <h1>{{title}}</h1>
+
+        <h1>{{ title }}</h1>
+
+        {% if user == object.owner or user.is_staff %}
+            <a href="{% url delete_page object.id %}" class="nav-link">Удалить</a>
+            <a href="{% url edit_page object.id %}" class="nav-link"> Изменить </a>
+        {% endif %}
+
         <ul class="property-list">
             {% for field_name, field in fields.items %}
-                <li><strong>{{ field_name }}:</strong> {{ object|get_attribute:field }}</li>
+                <li>
+                    <strong>{{ field_name }}:</strong> 
+                    {{ object|get_attribute:field }}
+                </li>
             {% endfor %}
+
             {% for foreign_name, foreign in foreigns.items %}
-                {% with obj=object|get_attribute:foreign.0 model_name=foreign.1 id=obj.id %}
-                    {% with id=obj.id %}
-                        <li><strong>{{foreign_name}}:</strong> <a href="{% url model_name id %}" class="property-link">{{obj}}</a></li>
-                    {% endwith %}
+                {% with foreign_obj=object|get_attribute:foreign.0 model_name=foreign.1%}
+                    <li>
+                        <strong>{{ foreign_name }}:</strong> 
+                        <a href="{% url model_name foreign_obj.id %}">{{ foreign_obj }}</a>
+                    </li>
                 {% endwith %}
             {% endfor %}
         </ul>

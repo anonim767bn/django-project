@@ -101,25 +101,25 @@ class Place(UUIDmixin, OwnerMixin):
 
 
 class Match(UUIDmixin, OwnerMixin):
-    tournament_id = models.ForeignKey(
+    tournament = models.ForeignKey(
         Tournament,
         verbose_name=_('tournament id'),
         on_delete=models.CASCADE,
     )
-    team1_id = models.ForeignKey(
+    team1 = models.ForeignKey(
         Team,
         verbose_name=_('team 1'),
         on_delete=models.CASCADE,
         related_name='mathces_as_team_1',
     )
-    team2_id = models.ForeignKey(
+    team2 = models.ForeignKey(
         Team,
         verbose_name=_('team 2'),
         on_delete=models.CASCADE,
         related_name='mathces_as_team_2',
     )
 
-    place_id = models.ForeignKey(
+    place = models.ForeignKey(
         Place,
         verbose_name=_('place'),
         on_delete=models.CASCADE,

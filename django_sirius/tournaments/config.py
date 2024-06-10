@@ -2,6 +2,7 @@ from .models import *
 
 PAGES = {
     'Tournament': {
+        'delete_page': 'tournament_delete',
         'entity_link': ['Турнир', 'tournament'],
         'list_link': ['Турниры', 'tournaments'],
         'model': Tournament,
@@ -14,9 +15,11 @@ PAGES = {
         'primary_fields': {
             'Название': 'title',
         },
-        'foreigns': None
+        'foreigns': None,
+        'form_link': ['create_tournament', 'update_tournament']
     },
     'Match': {
+        'delete_page': 'match_delete',
         'entity_link': ['Матч', 'match'],
         'list_link': ['Матчи', 'matches'],
         'model': Match,
@@ -27,13 +30,15 @@ PAGES = {
             'Время проведения': 'match_date_time'
         },
         'foreigns': {
-            'Команда 1': ['team1_id', 'team'],
-            'Команда 2': ['team2_id', 'team'],
-            'Место': ['place_id', 'place'],
-            'Турнир': ['tournament_id', 'tournament'],
-        }
+            'Команда 1': ['team1', 'team'],
+            'Команда 2': ['team2', 'team'],
+            'Место': ['place', 'place'],
+            'Турнир': ['tournament', 'tournament'],
+        },
+        'form_link': ['create_match', 'update_match']
     },
     'Place': {
+        'delete_page': 'place_delete',
         'entity_link': ['Место', 'place'],
         'list_link': ['Места', 'places'],
         'model': Place,
@@ -44,9 +49,11 @@ PAGES = {
         'primary_fields': {
             'Название': 'title',
         },
-        'foreigns': None
+        'foreigns': None,
+        'form_link': ['create_place', 'update_place']
     },
     'Team': {
+        'delete_page': 'team_delete',
         'entity_link': ['Команда', 'team'],
         'list_link': ['Команды', 'teams'],
         'model': Team,
@@ -57,6 +64,7 @@ PAGES = {
         'primary_fields': {
             'Название': 'title',
         },
-        'foreigns': None
+        'foreigns': None,
+        'form_link': ['create_team', 'update_team']
     },
 }

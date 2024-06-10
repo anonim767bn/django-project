@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="IlD23W_vMixRb3upHiGQ" name="Page-1">
-        <mxGraphModel dx="825" dy="205" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="372" dy="470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -10,13 +10,22 @@
                         <mxPoint x="540" y="260" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
+                <mxCell id="46" value="" style="edgeStyle=elbowEdgeStyle;html=1;" parent="1" source="11" target="44" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="11" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;&lt;font color=&quot;#000000&quot;&gt;team&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;id&lt;/b&gt;: uuid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;title&lt;/b&gt;: text&lt;br&gt;&lt;b&gt;founding&lt;/b&gt;: date&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;" parent="1" vertex="1">
                     <mxGeometry x="129.5" y="70" width="110" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="" style="edgeStyle=none;html=1;" parent="1" source="14" target="34" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;&lt;font color=&quot;#000000&quot;&gt;tournament&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;id&lt;/b&gt;: uuid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;title&lt;/b&gt;: text&lt;br&gt;&lt;b&gt;desctiprion&lt;/b&gt;:&lt;b&gt;&amp;nbsp;&lt;/b&gt;text&lt;br&gt;&lt;b&gt;start&lt;/b&gt;: date&lt;br&gt;&lt;b&gt;end&lt;/b&gt;: date&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;" parent="1" vertex="1">
                     <mxGeometry x="660" y="70" width="170" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;b&gt;tournament_to_team&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK, FK1&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;tournament_id&lt;/b&gt;: uuid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK, FK2&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;team_id&lt;/b&gt;: uuid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;" parent="1" vertex="1">
+                <mxCell id="33" value="" style="edgeStyle=none;html=1;" parent="1" source="15" target="32" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;b&gt;tournament_to_team&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK, FK1&lt;br&gt;PK, FK2&amp;nbsp;&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;tournament_id&lt;/b&gt;: uuid&lt;br&gt;&lt;b&gt;team_id&lt;/b&gt;: uuid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;" parent="1" vertex="1">
                     <mxGeometry x="360" y="70" width="170" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="18" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;fontColor=#000000;entryX=1;entryY=0.417;entryDx=0;entryDy=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" source="14" target="15" edge="1">
@@ -25,8 +34,11 @@
                         <mxPoint x="470" y="30" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="19" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;b&gt;match&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;id&lt;/b&gt;: uuid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;FK1&lt;br&gt;FK2&lt;br&gt;FK3&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;team1_id&lt;br&gt;team2_id&lt;br&gt;tournament_id&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;place&lt;/b&gt;: text&lt;br&gt;&lt;b&gt;match_date_time: &lt;/b&gt;datetime&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="129.5" y="270" width="180.5" height="130" as="geometry"/>
+                <mxCell id="37" value="" style="edgeStyle=none;html=1;" parent="1" source="19" target="36" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;b&gt;match&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;id&lt;/b&gt;: uuid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;FK1&lt;br&gt;FK2&lt;br&gt;FK3&lt;br&gt;FK4&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;team1_id&lt;/b&gt;: uuid&lt;br&gt;&lt;b&gt;team2_id&lt;/b&gt;: uuid&lt;br&gt;&lt;b&gt;tournament_id&lt;/b&gt;: uuid&lt;br&gt;&lt;b&gt;place_id&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;match_date_time&lt;/b&gt;: timestamp&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="271" width="210.5" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" value="" style="edgeStyle=elbowEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;fontColor=#000000;entryX=0.994;entryY=0.565;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" parent="1" source="14" target="19" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
@@ -56,6 +68,33 @@
                             <mxPoint x="50" y="210"/>
                         </Array>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="&lt;b&gt;PK (&lt;/b&gt;tournament_id, team_id)" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="355" y="150" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="&lt;b&gt;CheckConstaraint&lt;br&gt;{&lt;/b&gt;start_lte_end&lt;b&gt;}&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="684" y="191" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="&lt;b&gt;CheckConstaraint{&lt;/b&gt;&lt;br&gt;team1_ne_team2&lt;br&gt;&lt;b&gt;}&lt;/b&gt;&lt;br&gt;&lt;b&gt;UniqueConstraint{&lt;/b&gt;&lt;br&gt;team1_id, team2_id, place_id, tournament_id, match_date_time&lt;br&gt;&lt;b&gt;}&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="433" width="290" height="137" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="" style="edgeStyle=elbowEdgeStyle;html=1;" parent="1" source="38" target="41" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;b&gt;place&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;id&lt;/b&gt;: uuid&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;title&lt;/b&gt;: text&lt;br&gt;&lt;b&gt;description&lt;/b&gt;: text&lt;br&gt;&lt;b&gt;address&lt;/b&gt;: text&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="425" y="410" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="" style="edgeStyle=elbowEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;entryX=1.005;entryY=0.704;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.013;exitY=0.376;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="38" target="19" edge="1">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="440" y="460" as="sourcePoint"/>
+                        <mxPoint x="350" y="357" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="41" value="&lt;b&gt;UniqueConstaraint{&lt;/b&gt;&lt;br&gt;title&lt;br&gt;&lt;b&gt;}&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="435" y="520" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="&lt;b&gt;UniqueConstaraint&lt;br&gt;{&lt;/b&gt;title&lt;b&gt;}&lt;/b&gt;" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="129" y="170" width="120" height="70" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

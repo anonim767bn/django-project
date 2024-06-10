@@ -9,7 +9,6 @@ from typing import Callable
 from rest_framework.test import APIClient
 
 
-
 def add_null_field_test(path: str, field_name: str, creation_attrs: dict) -> Callable:
     def decorator(cls) -> type:
         def test_null_fields(self):
@@ -22,18 +21,22 @@ def add_null_field_test(path: str, field_name: str, creation_attrs: dict) -> Cal
         return cls
     return decorator
 
+
 def add_permission_test(path: str, creation_attrs: dict) -> Callable:
     def decorator(cls) -> type:
         def test_permission(self):
             response = self.client.post(reverse(path), creation_attrs)
             id = response.data['id']
             self.client2 = APIClient()
-            self.user2 = User.objects.create_user('testuser2', password='12345', )
+            self.user2 = User.objects.create_user(
+                'testuser2', password='12345', )
             self.token2 = Token.objects.create(user=self.user2)
-            self.client2.credentials(HTTP_AUTHORIZATION='Token ' + self.token2.key)
+            self.client2.credentials(
+                HTTP_AUTHORIZATION='Token ' + self.token2.key)
             response = self.client2.get(f'{reverse(path)}{id}/')
             self.assertEqual(response.status_code, 200)
-            response = self.client2.put(f'{reverse(path)}{id}/', creation_attrs)
+            response = self.client2.put(
+                f'{reverse(path)}{id}/', creation_attrs)
             self.assertEqual(response.status_code, 403)
         setattr(cls, 'test_permission', test_permission)
         return cls
@@ -58,6 +61,7 @@ class SetUpMixin(APITestCase):
         self.user = User.objects.create_user('testuser', password='12345', )
         self.token = Token.objects.create(user=self.user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+
 
 @add_permission_test('api:team-list', {'title': 'team1', 'founding': '2000-01-01'})
 @add_test_created(Team, 'api:team-list', {'title': 'team1', 'founding': '2000-01-01'})
@@ -87,6 +91,7 @@ class TournamentTestCase(SetUpMixin):
             self.client.post(reverse(
                 'api:tournament-list'), {'title': 'tournament1', 'start': '2022-01-01', 'end': '2021-01-01'})
 
+
 @add_permission_test('api:place-list', {'title': 'place1', 'address': 'address1'})
 @add_test_created(Place, 'api:place-list', {'title': 'place1', 'address': 'address1'})
 @add_null_field_test('api:place-list', 'title', {'title': '', 'address': 'address1'})
@@ -99,4 +104,36 @@ class PlaceTestCase(SetUpMixin):
 
 @add_null_field_test('api:match-list', 'match_date_time', {'match_date_time': ''})
 class MatchTestCase(SetUpMixin):
-    pass
+    def setUp(self):
+        super().setUp()
+        self.team1_id = self.client.post(reverse('api:team-list'), {
+            'title': 'team1', 'founding': '2000-01-01'}).data['id']
+        self.team2_id = self.client.post(reverse('api:team-list'), {
+            'title': 'team2', 'founding': '2000-01-01'}).data['id']
+        self.place_id = self.client.post(reverse('api:place-list'), {
+            'title': 'place', 'address': 'city'}).data['id']
+        self.place_id = self.client.post(reverse('api:place-list'), {
+            'title': 'place', 'address': 'city'}).data['id']
+        self.tournament_id = self.client.post(reverse('api:tournament-list'), {
+            'title': 'tournament', 'start': '2020-01-01', 'end': '2020-01-10'}).data['id']
+
+    def test_create_match(self):
+        response = self.client.post(reverse('api:match-list'), {
+            'tournament': self.tournament_id,
+            'team1': self.team1_id,
+            'team2': self.team2_id,
+            'place': self.place_id,
+            'match_date_time': '2021-01-01 12:00:00'
+        }, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_team1_ne_team2(self):
+        with self.assertRaises(IntegrityError):
+            response = self.client.post(reverse('api:match-list'), {
+                'tournament': self.tournament_id,
+                'team1': self.team1_id,
+                'team2': self.team1_id,
+                'place': self.place_id,
+                'match_date_time': '2021-01-01 12:00:00'
+            })
+            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

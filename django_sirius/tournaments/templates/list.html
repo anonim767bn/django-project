@@ -11,6 +11,9 @@
 {% block content %}
 {% load custom_filters %}
     <a href="{% url 'main_page' %}" class="main-page-link">Главная страница</a>
+    {% if user.is_authenticated %}
+        <a href="{% url create %}" class="create-link">Создать</a>
+    {% endif %}
     <ul>
         {% for entity in entities %}
             <li>
