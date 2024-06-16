@@ -4,22 +4,25 @@
 {% block css_addition %}
 
 <link rel="stylesheet" href="{% static 'tournaments/css/list.css' %}">
-<link rel="stylesheet" href="{% static 'base.css' %}">
+
 
 {% endblock %}
 
 {% block content %}
 {% load custom_filters %}
-    <a href="{% url 'main_page' %}" class="main-page-link">Главная страница</a>
-    {% if user.is_authenticated %}
-        <a href="{% url create %}" class="create-link">Создать</a>
-    {% endif %}
-    <ul>
+    <nav class="nav-links">
+        <a href="{% url 'main_page' %}" class="nav-link">Главная страница</a>
+        {% if user.is_authenticated %}
+            <a href="{% url create %}" class="nav-link">Создать</a>
+        {% endif %}
+    </nav>
+
+    <ul class="property-list">
         {% for entity in entities %}
             <li>
-                <a href="{% url link entity.id %}">  {{entity_name}}: {{ entity.id }}</a><br>
+                <a href="{% url link entity.id %}" class="property-link">  {{entity_name}}: {{ entity }}</a><br>
                 {% for field_name, field in fields.items %}
-                    {{ field_name }}: {{ entity|get_attribute:field }}<br>
+                    <strong>{{ field_name }}:</strong> {{ entity|get_attribute:field }}<br>
                 {% endfor %}
             </li>
             {% if not forloop.last %}

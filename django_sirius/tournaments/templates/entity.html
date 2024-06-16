@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="container">
-        <nav>
+        <nav class="nav-links">
             <a href="{% url 'main_page' %}" class="nav-link">Главная страница</a>
             <a href="{% url link.1 %}" class="nav-link">{{ link.0 }}</a>
         </nav>
@@ -18,8 +18,10 @@
         <h1>{{ title }}</h1>
 
         {% if user == object.owner or user.is_staff %}
-            <a href="{% url delete_page object.id %}" class="nav-link">Удалить</a>
-            <a href="{% url edit_page object.id %}" class="nav-link"> Изменить </a>
+            <div class="nav-links">
+                <a href="{% url delete_page object.id %}" class="nav-link">Удалить</a>
+                <a href="{% url edit_page object.id %}" class="nav-link"> Изменить </a>
+            </div>
         {% endif %}
 
         <ul class="property-list">
@@ -34,7 +36,7 @@
                 {% with foreign_obj=object|get_attribute:foreign.0 model_name=foreign.1%}
                     <li>
                         <strong>{{ foreign_name }}:</strong> 
-                        <a href="{% url model_name foreign_obj.id %}">{{ foreign_obj }}</a>
+                        <a href="{% url model_name foreign_obj.id %}" class="property-link">{{ foreign_obj }}</a>
                     </li>
                 {% endwith %}
             {% endfor %}

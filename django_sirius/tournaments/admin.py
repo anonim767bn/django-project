@@ -1,37 +1,51 @@
+"""Admin module for tournaments app."""
 from django.contrib import admin
-from .models import Tournament, Team, Match, TournamentTeam, Place
+
+from .models import Match, Place, Team, Tournament, TournamentTeam
+
+ID = 'id'
 
 
 class TournamentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'description', 'start', 'end')
-    readonly_fields = ('id',)
+    """Tournament admin."""
+
+    list_display = (ID, 'title', 'description', 'start', 'end')
+    readonly_fields = (ID,)
 
 
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'founding')
-    readonly_fields = ('id',)
+    """Team admin."""
+
+    list_display = (ID, 'title', 'founding')
+    readonly_fields = (ID,)
 
 
 class MatchAdmin(admin.ModelAdmin):
+    """Team admin."""
+
     list_display = (
-        'id',
+        ID,
         'team1_id',
         'team2_id',
         'tournament_id',
         'place_id',
-        'match_date_time'
+        'match_date_time',
     )
-    readonly_fields = ('id',)
+    readonly_fields = (ID,)
 
 
 class TournamentTeamAdmin(admin.ModelAdmin):
-    list_display = ('id', 'tournament_id', 'team_id')
-    readonly_fields = ('id',)
+    """TournamentTeam admin."""
+
+    list_display = (ID, 'tournament_id', 'team_id')
+    readonly_fields = (ID,)
 
 
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'address')
-    readonly_fields = ('id',)
+    """Place admin."""
+
+    list_display = (ID, 'title', 'address')
+    readonly_fields = (ID,)
 
 
 admin.site.register(Tournament, TournamentAdmin)

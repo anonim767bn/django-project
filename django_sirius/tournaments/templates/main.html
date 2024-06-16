@@ -8,13 +8,13 @@
         <h1>
             Приветствую на главной странице сайта
         </h1>
-        <div class="auth-container">
-            {% if not user.is_authenticated %}
-                <div id="auth">
-                    <a id="login" href="{% url 'login' %}">Войти</a> или <a id='register' href="{% url 'register' %}">Зарегистрироваться</a>
-                </div>
-            {% endif %}
-        </div>
+        {% if not user.is_authenticated %}
+            <div id="auth">
+                <a class="auth-link" id="login" href="{% url 'login' %}">Войти</a> 
+                <span>или</span>
+                <a class="auth-link" id='register' href="{% url 'register' %}">Зарегистрироваться</a>
+            </div>
+        {% endif %}
         <div class="links">
             {% for key, value in pages.items %}
                 <a class="page-link" href="{% url value %}">{{ key }}</a>

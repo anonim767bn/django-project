@@ -1,25 +1,34 @@
-from rest_framework import serializers
-from django.db.models import Model
-from .models import Tournament, Match, Team, Place
+"""Serializers for the tournaments app."""
 from typing import Type
 
+from django.db.models import Model
+from rest_framework import serializers
 
-def get_serializer(model_: Type[Model]) -> Type[serializers.ModelSerializer]:
+from .models import Match, Place, Team, Tournament
+
+
+def get_serializer(
+    just_model: Type[Model],
+) -> Type[serializers.ModelSerializer]:
+    """Get a serializer for a model.
+
+    Args:
+        just_model (Type[Model]): The model.
+
+    Returns:
+        Type[serializers.ModelSerializer]: Serializer for the model.
+    """
     class Serializer(serializers.ModelSerializer):
         owner = serializers.ReadOnlyField(source='owner.username')
 
         class Meta:
-            model = model_
+            model = just_model
             fields = '__all__'
 
     return Serializer
 
 
-TournamentSerializer: Type[serializers.ModelSerializer] = \
-    get_serializer(Tournament)
-MatchSerializer: Type[serializers.ModelSerializer] = \
-    get_serializer(Match)
-TeamSerializer: Type[serializers.ModelSerializer] = \
-    get_serializer(Team)
-PlaceSerializer: Type[serializers.ModelSerializer] = \
-    get_serializer(Place)
+TournamentSerializer = get_serializer(Tournament)
+MatchSerializer = get_serializer(Match)
+TeamSerializer = get_serializer(Team)
+PlaceSerializer = get_serializer(Place)

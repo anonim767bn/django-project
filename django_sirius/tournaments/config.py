@@ -1,4 +1,6 @@
-from .models import Tournament, Match, Team, Place
+from .models import Match, Place, Team, Tournament
+
+TEST_PASSWORD = '12345'
 
 PAGES = {
     'Tournament': {
@@ -10,13 +12,14 @@ PAGES = {
             'Название': 'title',
             'Описание': 'description',
             'Начало': 'start',
-            'Конец': 'end'
+            'Конец': 'end',
         },
         'primary_fields': {
-            'Название': 'title',
+            'Начало': 'start',
+            'Конец': 'end',
         },
         'foreigns': None,
-        'form_link': ['create_tournament', 'update_tournament']
+        'form_link': ['create_tournament', 'update_tournament'],
     },
     'Match': {
         'delete_page': 'match_delete',
@@ -27,7 +30,7 @@ PAGES = {
             'Время проведения': 'match_date_time',
         },
         'primary_fields': {
-            'Время проведения': 'match_date_time'
+            'Время проведения': 'match_date_time',
         },
         'foreigns': {
             'Команда 1': ['team1', 'team'],
@@ -35,7 +38,7 @@ PAGES = {
             'Место': ['place', 'place'],
             'Турнир': ['tournament', 'tournament'],
         },
-        'form_link': ['create_match', 'update_match']
+        'form_link': ['create_match', 'update_match'],
     },
     'Place': {
         'delete_page': 'place_delete',
@@ -47,10 +50,10 @@ PAGES = {
             'Адрес': 'address',
         },
         'primary_fields': {
-            'Название': 'title',
+            'Адрес': 'address',
         },
         'foreigns': None,
-        'form_link': ['create_place', 'update_place']
+        'form_link': ['create_place', 'update_place'],
     },
     'Team': {
         'delete_page': 'team_delete',
@@ -65,6 +68,6 @@ PAGES = {
             'Название': 'title',
         },
         'foreigns': None,
-        'form_link': ['create_team', 'update_team']
+        'form_link': ['create_team', 'update_team'],
     },
 }

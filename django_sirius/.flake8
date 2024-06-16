@@ -3,6 +3,7 @@ exclude =
     *migrations*,
     *pycache*,
     *venv*,
-    *git*,
     *settings*,
-ignore = F401
+    *config*,
+    *init*,
+    *manage*,
